@@ -1,29 +1,32 @@
 package helper
 
 import (
+	// "errors"
+	// "fmt"
 	modelrespons "furniture/models/models_response"
 	"os"
+	// "strconv"
+	// "strings"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	// "github.com/labstack/echo/v4"
 )
 
+// GenerateAdminToken digunakan untuk menghasilkan token JWT untuk admin.
 func GenerateAdminToken(adminLoginResponse *modelrespons.AdminLogin, id uint) (string, error) {
+	// Menghitung waktu kedaluwarsa token (expire time) sekitar 7 hari dari saat ini
 	expireTime := time.Now().Add(time.Hour * 24 * 7).Unix()
+	 // Membuat klaim (claims) JWT yang berisi ID, email, waktu kedaluwarsa, dan peran "admin"
 	claims := jwt.MapClaims{
-		"id":       id,
-		"email":    adminLoginResponse.Email,
-		"exp":      expireTime,
-		"role":     "admin",
+		"id":    id,
+		"email": adminLoginResponse.Email,
+		"exp":   expireTime,
+		"role":  "admin",
 	}
-	// claims["authorized"] = true
-	// claims["id"] = id
-	// claims["email"] = adminLoginResponse.Email
-	// claims["password"] = adminLoginResponse.Password
-	// claims["exp"] = expireTime
 
+	// Membuat token JWT dengan metode penandatanganan HS256 (HMAC-SHA256)
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	// Menandatangani token menggunakan kunci rahasia dari environment variable
 	validToken, err := token.SignedString([]byte(os.Getenv("SECRET_JWT")))
 	if err != nil {
 		return "", err
@@ -32,21 +35,21 @@ func GenerateAdminToken(adminLoginResponse *modelrespons.AdminLogin, id uint) (s
 	return validToken, nil
 }
 
+// GenerateUserToken digunakan untuk menghasilkan token JWT untuk pengguna (user).
 func GenerateUserToken(UserLoginResponse *modelrespons.UserLogin, id uint) (string, error) {
+	 // Menghitung waktu kedaluwarsa token (expire time) sekitar 7 hari dari saat ini
 	expireTime := time.Now().Add(time.Hour * 24 * 7).Unix()
+	// Membuat klaim (claims) JWT yang berisi ID, email, waktu kedaluwarsa, dan peran "user"
 	claims := jwt.MapClaims{
-		"id":       id,
-		"email":    UserLoginResponse.Email,
-		"exp":      expireTime,
-		"role":     "user",
+		"id":    id,
+		"email": UserLoginResponse.Email,
+		"exp":   expireTime,
+		"role":  "user",
 	}
-	// claims["authorized"] = true
-	// claims["id"] = id
-	// claims["name"] = UserLoginResponse.Name
-	// claims["email"] = UserLoginResponse.Email
-	// claims["exp"] = expireTime
 
+	// Membuat token JWT dengan metode penandatanganan HS256 (HMAC-SHA256)
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	// Menandatangani token menggunakan kunci rahasia dari environment variable
 	validToken, err := token.SignedString([]byte(os.Getenv("SECRET_JWT")))
 	if err != nil {
 		return "", err
@@ -55,22 +58,25 @@ func GenerateUserToken(UserLoginResponse *modelrespons.UserLogin, id uint) (stri
 	return validToken, nil
 }
 
-// func ExtractTokenAdminId(e echo.Context) float64 {
-// 	admin := e.Get("admin").(*jwt.Token)
-// 	if admin.Valid {
-// 		claims := admin.Claims.(jwt.MapClaims)
-// 		AdminId := claims["id"].(float64)
-// 		return AdminId
+// func ExtractToken(tokenString string) (int, error) {
+// 	parts := strings.Split(tokenString, " ")
+// 	if len(parts) != 2 || parts[0] != "Bearer" {
+// 		return 0, errors.New("invalid token")
 // 	}
-// 	return 0
-// }
+// 	jwtToken := parts[1]
 
-// func ExtractTokenUserId(e echo.Context) float64 {
-// 	user := e.Get("user").(*jwt.Token)
-// 	if user.Valid {
-// 		claims := user.Claims.(jwt.MapClaims)
-// 		UserId := claims["id"].(float64)
-// 		return UserId
+// 	token, err := jwt.Parse(jwtToken, func(token *jwt.Token) (interface{}, error) {
+// 		return []byte(os.Getenv("SECRET")), nil
+// 	})
+// 	if err != nil {
+// 		return 0, errors.New("invalid token")
 // 	}
-// 	return 0
+
+// 	if claims, ok := token.Claims.(jwt.MapClaims); ok {
+// 		noTableString := fmt.Sprint(claims["no_table"])
+// 		noTable, _ := strconv.Atoi(noTableString)
+// 		return noTable, nil
+// 	}
+
+// 	return 0, errors.New("claims not found")
 // }

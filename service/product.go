@@ -12,6 +12,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+// ProductService adalah interface yang mendefinisikan operasi-operasi yang dapat dilakukan pada entitas Produk.
 type ProductService interface {
 	AddProduct(service echo.Context, request modelsrequest.AddProductRequest) (*domain.Product, error)
 	UpdateProduct(service echo.Context, request modelsrequest.ProductUpdateRequest, id int) (*domain.Product, error)
@@ -21,11 +22,13 @@ type ProductService interface {
     GetProductByCategory(service echo.Context, Category string) (*domain.Product, error)
 }
 
+// ProductServiceImpl adalah implementasi dari ProductService.
 type ProductServiceImpl struct {
 	ProductRepository repository.ProductRepository
 	Validate          *validator.Validate
 }
 
+// NewProductService adalah konstruktor untuk membuat instance ProductServiceImpl.
 func NewProductService(ProductRepository repository.ProductRepository, Validate *validator.Validate) ProductService {
 	return &ProductServiceImpl{
 		ProductRepository: ProductRepository,
@@ -33,6 +36,7 @@ func NewProductService(ProductRepository repository.ProductRepository, Validate 
 	}
 }
 
+// AddProduct digunakan untuk menambahkan produk baru.
 func (s *ProductServiceImpl) AddProduct(service echo.Context, request modelsrequest.AddProductRequest) (*domain.Product, error) {
     err := s.Validate.Struct(request)
     if err != nil {
@@ -49,6 +53,7 @@ func (s *ProductServiceImpl) AddProduct(service echo.Context, request modelsrequ
     return result, nil
 }
 
+// UpdateProduct digunakan untuk memperbarui informasi produk.
 func (s *ProductServiceImpl) UpdateProduct(service echo.Context, request modelsrequest.ProductUpdateRequest, id int) (*domain.Product, error) {
 	err := s.Validate.Struct(request)
 	if err != nil {
@@ -69,6 +74,7 @@ func (s *ProductServiceImpl) UpdateProduct(service echo.Context, request modelsr
 	return result, nil
 }
 
+// DeleteProduct digunakan untuk menghapus produk berdasarkan ID.
 func (s *ProductServiceImpl) DeleteProduct(service echo.Context, id int) error {
     existingProduct, _ := s.ProductRepository.GetId(id)
     if existingProduct == nil {
@@ -83,6 +89,7 @@ func (s *ProductServiceImpl) DeleteProduct(service echo.Context, id int) error {
     return nil
 }
 
+// GetProductByID digunakan untuk mendapatkan informasi produk berdasarkan ID.
 func (s *ProductServiceImpl) GetProductId(service echo.Context, id int) (*domain.Product, error) {
     product, err := s.ProductRepository.GetId(id)
 	if err != nil {
@@ -91,6 +98,7 @@ func (s *ProductServiceImpl) GetProductId(service echo.Context, id int) (*domain
 	return product, nil
 }
 
+// GetAllProduct digunakan untuk mendapatkan semua produk.
 func (s *ProductServiceImpl) GetAllProduct(service echo.Context) ([]domain.Product, error) {
     product, err := s.ProductRepository.GetAll()
     if err != nil {
@@ -100,6 +108,7 @@ func (s *ProductServiceImpl) GetAllProduct(service echo.Context) ([]domain.Produ
     return product, nil
 }
 
+// GetProductByCategory digunakan untuk mendapatkan produk berdasarkan kategori.
 func (s *ProductServiceImpl) GetProductByCategory(service echo.Context, Category string) (*domain.Product, error) {
 	product, _ := s.ProductRepository.GetProductByCategory(Category)
 	if product == nil {

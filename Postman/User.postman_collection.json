@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "a263a11a-7aa6-408e-9741-bcea467c9828",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30888802",
+		"_collection_link": "https://www.postman.com/lively-equinox-899238/workspace/furniture/collection/29084841-a263a11a-7aa6-408e-9741-bcea467c9828?action=share&source=collection_link&creator=30888802"
+	},
+	"item": [
+		{
+			"name": "Regist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "fajar",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "arasy@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "fajar123",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "jauh dah",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "0812",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8000/user"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "arasy@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "fajar123",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8000/user/login"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImFyYXN5QGdtYWlsLmNvbSIsImV4cCI6MTY5OTEwNDQ4OSwiaWQiOjMsIm5hbWUiOiJmYWphciJ9.bwteKvcDwKkPlgSar2pqgLdSGCvkT-9I0ljPxpqwZ_Q"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/user"
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImFyYXN5QGdtYWlsLmNvbSIsImV4cCI6MTY5OTEwNDQ4OSwiaWQiOjMsIm5hbWUiOiJmYWphciJ9.bwteKvcDwKkPlgSar2pqgLdSGCvkT-9I0ljPxpqwZ_Q"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": "http://localhost:8000/user/3"
+			},
+			"response": []
+		},
+		{
+			"name": "UserUpdate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImFyYXN5QGdtYWlsLmNvbSIsImV4cCI6MTY5OTEwNDQ4OSwiaWQiOjMsIm5hbWUiOiJmYWphciJ9.bwteKvcDwKkPlgSar2pqgLdSGCvkT-9I0ljPxpqwZ_Q"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "fajar arasy",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "fajararasy@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "arasy123",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "jauh pake helm",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "0851",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8000/user/3"
+			},
+			"response": []
+		},
+		{
+			"name": "DeletUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImFyYXN5QGdtYWlsLmNvbSIsImV4cCI6MTY5OTEwNDQ4OSwiaWQiOjMsIm5hbWUiOiJmYWphciJ9.bwteKvcDwKkPlgSar2pqgLdSGCvkT-9I0ljPxpqwZ_Q"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8000/user/3"
+			},
+			"response": []
+		}
+	]
+}

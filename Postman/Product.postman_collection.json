@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "29293272-b462-45a6-b471-18b7a878c27f",
+		"name": "Product",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30888802",
+		"_collection_link": "https://www.postman.com/lively-equinox-899238/workspace/furniture/collection/29084841-29293272-b462-45a6-b471-18b7a878c27f?action=share&source=collection_link&creator=30888802"
+	},
+	"item": [
+		{
+			"name": "Add_Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhamFyYXJhc3lAZ21haWwuY29tIiwiZXhwIjoxNjk5MjQ4NTQ0LCJpZCI6NCwicm9sZSI6ImFkbWluIn0.ZOwXDwFqcaUWbDg22ed630GTdmKXpP4ojnn3Nf8lxZw"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "kursi makan",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "kursi makan kayu ",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "120000",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "Category",
+							"value": "kursi",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8000/admin/product"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhamFyYXJhc3lAZ21haWwuY29tIiwiZXhwIjoxNjk5MjU1ODAwLCJpZCI6Mywicm9sZSI6InVzZXIifQ.gM2MRGAARrXIH-0P-WeidCGQ5FNOgxKQuEaO2x_umrw"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/product"
+			},
+			"response": []
+		},
+		{
+			"name": "GetId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhamFyYXJhc3lAZ21haWwuY29tIiwiZXhwIjoxNjk5MjU1ODAwLCJpZCI6Mywicm9sZSI6InVzZXIifQ.gM2MRGAARrXIH-0P-WeidCGQ5FNOgxKQuEaO2x_umrw"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/product/11"
+			},
+			"response": []
+		},
+		{
+			"name": "GetByCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhamFyYXJhc3lAZ21haWwuY29tIiwiZXhwIjoxNjk5MjU1ODAwLCJpZCI6Mywicm9sZSI6InVzZXIifQ.gM2MRGAARrXIH-0P-WeidCGQ5FNOgxKQuEaO2x_umrw"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/product/category/elektronik"
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhamFyYXJhc3lAZ21haWwuY29tIiwiZXhwIjoxNjk5MjQ4NTQ0LCJpZCI6NCwicm9sZSI6ImFkbWluIn0.ZOwXDwFqcaUWbDg22ed630GTdmKXpP4ojnn3Nf8lxZw"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/admin/product/:id?name=kursi gaming&description=kursi enak&price=200000&stock=20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"admin",
+						"product",
+						":id"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "kursi gaming"
+						},
+						{
+							"key": "description",
+							"value": "kursi enak"
+						},
+						{
+							"key": "price",
+							"value": "200000"
+						},
+						{
+							"key": "stock",
+							"value": "20"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhamFyYXJhc3lAZ21haWwuY29tIiwiZXhwIjoxNjk5MjQ4NTQ0LCJpZCI6NCwicm9sZSI6ImFkbWluIn0.ZOwXDwFqcaUWbDg22ed630GTdmKXpP4ojnn3Nf8lxZw"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8000/admin/product/5"
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFyYXN5QGdtYWlsLmNvbSIsImV4cCI6MTY5OTMyMDgwOCwiaWQiOjQsInJvbGUiOiJ1c2VyIn0.hLWVjcz-4QOPX2b7elELtnET2p8JyxWIh2vOGFTg0ec"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "kursi kantor",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "kursi kantor nyaman",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "200000",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "16",
+							"type": "text"
+						},
+						{
+							"key": "Category",
+							"value": "kursi",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8000/admin/product"
+			},
+			"response": []
+		}
+	]
+}
